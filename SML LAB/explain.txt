@@ -1,0 +1,57 @@
+Okay, here are short, exam-focused explanations for each program:
+
+## Program 1: Interquartile Range (IQR) Calculation
+
+* **What it does:** Calculates the **25th percentile (Q1)** and **75th percentile (Q3)** of a list of house prices using the `numpy.percentile` function. It then computes the **Interquartile Range (IQR)** by subtracting Q1 from Q3 (`IQR = Q3 - Q1`).
+* **Key Concept:** The IQR is a measure of statistical **dispersion** or **spread**.
+* **Interpretation:** The IQR represents the range within which the **middle 50%** of the house prices fall. A larger IQR indicates greater variability or spread in the central portion of the price data, while a smaller IQR indicates less variability.
+* **Significance:** The IQR is **robust to outliers** (extreme high or low values) because it only considers the middle half of the data, making it a good measure of typical price spread compared to the simple range.
+
+---
+
+## Program 2: Customer Satisfaction vs. Repeat Purchases Visualization
+
+* **What it does:** Uses `pandas`, `matplotlib`, and `seaborn` to visualize the relationship between two **categorical variables**: 'Customer Satisfaction' (Low, Medium, High) and 'Repeat Purchase' (Yes/No). It creates two plots:
+    1.  A **grouped bar plot** (`seaborn.countplot`) showing the count of 'Yes' and 'No' repeat purchases side-by-side for each satisfaction level.
+    2.  A **stacked bar chart** (`pandas.crosstab` then `.plot(kind='bar', stacked=True)`) showing the total count for each satisfaction level, with bars segmented by the count of 'Yes' and 'No' repeat purchases.
+* **Key Concept:** Visual exploration of the **association** or **relationship** between categorical variables.
+* **Interpretation:** By examining the plots, you can infer if there's a relationship. For instance, if the 'High' satisfaction bar has a significantly larger proportion of 'Yes' (repeat purchase) compared to the 'Low' satisfaction bar, it suggests higher satisfaction is associated with increased repeat purchases.
+
+---
+
+## Program 3: Car Attributes Relationship Exploration (Pair Plot & Correlation)
+
+* **What it does:** Explores relationships between three **numerical variables** ('engineSize', 'mpg', 'price') from a car dataset using `pandas`, `seaborn`, and `matplotlib`.
+    1.  It creates a **pair plot** (`seaborn.pairplot`), which displays **scatter plots** for every pair of variables (showing visual patterns like linear or non-linear relationships) and **histograms** (or KDE plots) for the distribution of each individual variable along the diagonal.
+    2.  It calculates the **correlation matrix** (`.corr()`) and visualizes it as a **heatmap** (`seaborn.heatmap`), showing the **correlation coefficient** (a value between -1 and 1) for each pair, indicating the strength and direction of the *linear* relationship.
+* **Key Concepts:** Exploratory Data Analysis (EDA), Correlation, Scatter Plots, Pair Plots, Correlation Matrix, Heatmap.
+* **Interpretation:** Strong relationships are identified visually in the scatter plots (points forming a clear pattern) and numerically/colorimetrically in the heatmap (coefficients close to +1 or -1, indicated by color intensity). For example, a strong negative correlation between 'engineSize' and 'mpg' (coefficient near -1) means larger engines tend to have lower fuel efficiency. Practical significance involves understanding real-world implications, like trade-offs between engine power, fuel economy, and price.
+
+---
+
+## Program 4: Central Limit Theorem (CLT) Demonstration
+
+* **What it does:** Simulates the **Central Limit Theorem (CLT)** using `numpy`, `matplotlib`, and `seaborn`.
+    1.  It creates a large, **skewed population** distribution (using log-normal to mimic salaries).
+    2.  It repeatedly takes multiple **random samples** (size n=50) from this population.
+    3.  It calculates the **mean** of each sample.
+    4.  It plots the **distribution of these sample means** using a histogram and KDE plot.
+* **Key Concepts:** Population Distribution, Sample, Sample Mean, **Sampling Distribution of the Sample Mean**, **Central Limit Theorem (CLT)**.
+* **CLT Explanation:** The CLT states that if you take sufficiently large random samples (typically n ≥ 30) from *any* population (even a skewed one), the distribution of the sample means (the sampling distribution) will be approximately **normally distributed** (bell-shaped).
+* **Interpretation:** The program demonstrates this. Even though the original 'population_salaries' distribution is skewed, the histogram of the 'sample_means' (calculated from samples of size 50) tends towards a bell shape, centered around the population mean. This is a fundamental concept in inferential statistics.
+
+---
+
+## Program 5: One-Sample T-Test
+
+* **What it does:** Performs a **one-sample t-test** using `scipy.stats` to determine if a sample mean is significantly different from a known or hypothesized population mean (μ₀), especially when the population standard deviation is unknown and the sample size is small (n<30, although it works for larger n too).
+* **Hypotheses:**
+    * **Null Hypothesis (H₀):** The true mean heart rate increase is 0 (μ = 0).
+    * **Alternative Hypothesis (H<0xE2><0x82><0x90>):** The true mean heart rate increase is not 0 (μ ≠ 0).
+* **Method:**
+    1.  Calculates the **t-statistic** based on the sample mean (8), sample standard deviation (2), sample size (20), and hypothesized mean (0).
+    2.  Determines the **degrees of freedom** (df = n - 1 = 19).
+    3.  Calculates the **p-value**, which is the probability of observing a t-statistic as extreme as, or more extreme than, the one calculated, assuming H₀ is true.
+    4.  Finds the **critical t-value** for a given significance level (α = 0.05) and df.
+* **Decision Rule:** Reject H₀ if the **p-value < α** OR if the **absolute value of the t-statistic > critical t-value**.
+* **Conclusion (based on output):** Since the p-value (~0) is less than 0.05, and the |t-statistic| (17.89) is greater than the critical value (2.093), the null hypothesis is rejected. There is statistically significant evidence that the drug affects heart rate.
